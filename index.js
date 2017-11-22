@@ -41,7 +41,7 @@ app.get('/webhook', (req, res) => {
 
     let body = req.body;
     var messageData = {
-        message: 'hello'
+        message: "اثممخ"
       };
 
 request({
@@ -50,11 +50,11 @@ request({
   method: 'POST',
   json: messageData
 
-}, function (error, response, bodyss) {
+}, function (error, response, body) {
   if (!error && response.statusCode == 200) {
-    console.log(bodyss);
+    console.log(body);
   } else {
-    console.error("Failed calling Send API", response.statusCode, response.statusMessage, bodyss.error);
+    console.error("Failed calling Send API", response.statusCode, response.statusMessage, body.error);
   }
 });
 
