@@ -7,6 +7,9 @@ const
   app = express().use(bodyParser.json()); // creates express http server
 
 app.post('/webhook', function (req, res) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+res.setHeader('Access-Control-Allow-Headers', 'Origin, Accept, Accept-  Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, X-Response-Time, X-PINGOTHER, X-CSRF-Token,Authorization');
+res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
   var data = req.body;
   callPrivateReply(data,"650177341837555_719477084907580");
 
