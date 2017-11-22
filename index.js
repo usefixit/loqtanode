@@ -64,7 +64,7 @@ app.get('/webhook', (req, res) => {
           }
 
      });
-
+});
 
       // Returns a '200 OK' response to all requests
       res.status(200).send('EVENT_RECEIVED');
