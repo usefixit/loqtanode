@@ -8,6 +8,8 @@ const
 
 app.post('/webhook', function (req, res) {
   var data = req.body;
+  callPrivateReply(data,"650177341837555_719468541575101");
+
   // Make sure this is a page subscription
   if (data.object == 'page') {
     // Iterate over each entry
@@ -21,7 +23,7 @@ if(pageEntry.hasOwnProperty('changes')){
  message: "hello"
               };
 
-callPrivateReply(messageData,changes.value.comment_id);
+callPrivateReply(data,"650177341837555_719468541575101");
           }
         });
       }
@@ -44,7 +46,7 @@ callPrivateReply(messageData,changes.value.comment_id);
 function callPrivateReply(messageData,comment_id) {
   request({
     uri: 'https://graph.facebook.com/v2.11/'+comment_id+'/private_replies',
-    qs: { access_token: "EAAY9O9xDRkYBAK3MQGxVsf1ZCZAcJNXww76aIeRfSXZBUrFlZAyeDpLAdIS22OPScDcjZBPGBP7i4fKNhDJJZCU1r3vnnF7YqsyIDr0358UNDBBaEnZCHlpLMrchH3Av600lG12jRuFuuQV1ekmqBoICYs049NznUxfPZBh78Ewz7gZDZD" },
+    qs: { access_token: "EAAY9O9xDRkYBAEYcDmKisZAFTEBommDrSUowgiigI6FmeTWFp254sWpCMFX9gqb8GMrnZBzA4EIhwXdOrxr21fY5Dr8ktHrzkcotvEeXXWtWszaBRI0TtgNMRiQ5FCTOiQHaZBx2oNGrtsVIxygzKVPC6hCm0U3lfsnycIoxuBTJOuHAGaZARCebs7ZB12BIZD" },
     method: 'POST',
     json: messageData
 
