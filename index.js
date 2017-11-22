@@ -41,7 +41,7 @@ app.get('/webhook', (req, res) => {
 
     let body = req.body;
     var messageData = {
-        message: JSON.stringify(body)
+        message: 'hello'
       };
 
 request({
