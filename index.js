@@ -43,7 +43,7 @@ callPrivateReply(messageData,changes.value.comment_id);
 
 function callPrivateReply(messageData,comment_id) {
   request({
-    uri: 'https://graph.facebook.com/v2.9/'+comment_id+'/private_replies',
+    uri: 'https://graph.facebook.com/v2.11/'+comment_id+'/private_replies',
     qs: { access_token: "EAACEdEose0cBAM6PDGqLzdYxKIIhKqW2j65DOBfyyZCUDoMAzZBSdRR9N7ToOkEpDji1ZCTUAndz1M2yiouS205OAIXYfWS5FZAOWLz9WeahN2PgomgUz22hSCzP2DwyVSsmJgsrrsmMtrH8C3K6LRnPkvZANI4tXIKC3vItvpzPbEtummJPCDYFqhl937pFRFZAEzVUXqBQZDZD" },
     method: 'POST',
     json: messageData
