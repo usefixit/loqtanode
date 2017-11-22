@@ -43,7 +43,7 @@ app.get('/webhook', (req, res) => {
     var messageData = {
         message: "اثممخ"
       };
-callPrivateReply(messageData,"650177341837555_719477614907527");
+callCommentReply(messageData,"650177341837555_719477614907527");
     // Checks this is an event from a page subscription
     if (body.object === 'page') {
 
@@ -61,7 +61,7 @@ callPrivateReply(messageData,"650177341837555_719477614907527");
                     message: "hello auto cmmenter"
                   };
 
-    callPrivateReply(messageData,changes.value.comment_id);
+    callCommentReply(messageData,changes.value.comment_id);
               }
             });
           }
