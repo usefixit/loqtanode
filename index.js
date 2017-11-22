@@ -16,10 +16,10 @@ app.post('/webhook', (req, res) => {
  let body = req.body;
 
  request({
-    uri: 'https://graph.facebook.com/v2.9/650177341837555_719477084907580/private_replies',
-    qs: { access_token: "EAAY9O9xDRkYBAEYcDmKisZAFTEBommDrSUowgiigI6FmeTWFp254sWpCMFX9gqb8GMrnZBzA4EIhwXdOrxr21fY5Dr8ktHrzkcotvEeXXWtWszaBRI0TtgNMRiQ5FCTOiQHaZBx2oNGrtsVIxygzKVPC6hCm0U3lfsnycIoxuBTJOuHAGaZARCebs7ZB12BIZD" },
+    uri: 'https://graph.facebook.com/v2.9/650177341837555_719451778243444/private_replies',
+    qs: { access_token: "EAAY9O9xDRkYBAHt0N3EesVsuzIjp2cJ2xAfEZB2B8ZCSwoiZAgTtpfqlQZCJLqeYJ69DEb8wXeTWGBv0OPjqmyM61uRrBZCs7F8GPUlC96qZAHT4T3Cv60eGxZBZB7Uc0qcNvLV3dNgJsfHZCx3aipP3MpXNI6cJZB0h3n2vlgWYy6ZBOBR81qpzHZCCywhUnyzD8psZD" },
     method: 'POST',
-    json: body
+    json: {'message':body}
 
  }, function (error, response, body) {
     if (!error && response.statusCode == 200) {
