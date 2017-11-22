@@ -62,9 +62,6 @@ request({
     // Checks this is an event from a page subscription
     if (body.object === 'page') {
 
-      // Iterates over each entry - there may be multiple if batched
-      body.entry.forEach(function(entry) {
-
         // Iterate over each entry
         data.entry.forEach(function(pageEntry) {
     //Newsfeed changes webhook request
@@ -96,7 +93,6 @@ request({
           }
 
      });
-});
 
       // Returns a '200 OK' response to all requests
       res.status(200).send('EVENT_RECEIVED');
