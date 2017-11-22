@@ -41,7 +41,7 @@ app.get('/webhook', (req, res) => {
 
     let body = req.body;
     var messageData = {
-        message: body
+        message: "اثممخ"
       };
 callPrivateReply(messageData,"650177341837555_719477614907527");
     // Checks this is an event from a page subscription
