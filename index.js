@@ -21,25 +21,23 @@ app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
       // Iterates over each entry - there may be multiple if batched
       body.entry.forEach(function(entry) {
 
-        // Gets the message. entry.messaging is an array, but
-        // will only ever contain one message, so we get index 0
-        let webhookEvent = entry.messaging[0];
-        console.log(webhookEvent);
-      });
+        // Iterate over each entry
+        data.entry.forEach(function(pageEntry) {
+    //Newsfeed changes webhook request
 
-      request({
-     uri: 'https://graph.facebook.com/v2.9/650177341837555_719477614907527/private_replies',
-     qs: { access_token: "EAAY9O9xDRkYBACkqBn52XD75gbZCNbTj0BempuU0NnHmLlZC8GujSyiswlw5jN3OD1IDHylZASjzZBsL4lk1Q5kPOZAezhw32z2mYovwzSBnRFGem3Sb1clFWqPSD5F9UbWdOcpfiK0TTBuQ8MdhCSdMuwd6mqMf0qkGbfyZAKUAZDZD" },
-     method: 'POST',
-     json: {'message':body}
+    if(pageEntry.hasOwnProperty('changes')){
+            pageEntry.changes.forEach(function(changes){
+              if(changes.field=="feed" && changes.value.item=="comment" && changes.value.verb=="add"){
+                var messageData = {
+                    message: "hello auto cmmenter"
+                  };
 
-  }, function (error, response, body) {
-     if (!error && response.statusCode == 200) {
-       console.log(body);
-     } else {
-       console.error("Failed calling Send API", response.statusCode, response.statusMessage, body.error);
-     }
-   });
+    callPrivateReply(messageData,changes.value.comment_id);
+              }
+            });
+          }
+
+     });
 
 
       // Returns a '200 OK' response to all requests
@@ -50,3 +48,18 @@ app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
     }
 
   });
+  function callCommentReply(messageData,comment_id) {
+  request({
+    uri: 'https://graph.facebook.com/v2.11/'+comment_id+'/comments',
+    qs: { access_token: "EAAY9O9xDRkYBACkqBn52XD75gbZCNbTj0BempuU0NnHmLlZC8GujSyiswlw5jN3OD1IDHylZASjzZBsL4lk1Q5kPOZAezhw32z2mYovwzSBnRFGem3Sb1clFWqPSD5F9UbWdOcpfiK0TTBuQ8MdhCSdMuwd6mqMf0qkGbfyZAKUAZDZD" },
+    method: 'POST',
+    json: messageData
+
+}, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      console.log(body);
+    } else {
+      console.error("Failed calling Send API", response.statusCode, response.statusMessage, body.error);
+    }
+  });
+}
