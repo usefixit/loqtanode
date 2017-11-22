@@ -10,12 +10,12 @@ const
 // Creates the endpoint for our webhook
 app.post('/webhook', (req, res) => {
 
- let body = req.body;
+   console.log("here");
 
 
 
    // Returns a '200 OK' response to all requests
-   res.status(200).send(body);
+   res.status(200);
 
 
 });
