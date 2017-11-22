@@ -43,6 +43,7 @@ callPrivateReply(data,"650177341837555_719468541575101");
     // successfully received the callback. Otherwise, the request will time out.
     res.sendStatus(200);
   }
+  res.sendStatus(200);
 });
 
 
