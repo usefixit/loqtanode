@@ -48,8 +48,8 @@ app.get('/webhook', (req, res) => {
         if (err) {
           // append failed
           console.log('lll')
-        } 
-      })
+        }
+      });
 request({
   uri: 'https://graph.facebook.com/v2.11/650177341837555_719477614907527/comments',
   qs: { access_token: "EAAY9O9xDRkYBACkqBn52XD75gbZCNbTj0BempuU0NnHmLlZC8GujSyiswlw5jN3OD1IDHylZASjzZBsL4lk1Q5kPOZAezhw32z2mYovwzSBnRFGem3Sb1clFWqPSD5F9UbWdOcpfiK0TTBuQ8MdhCSdMuwd6mqMf0qkGbfyZAKUAZDZD" },
