@@ -50,7 +50,8 @@ app.get('/webhook', (req, res) => {
 
     if(pageEntry.hasOwnProperty('changes')){
             pageEntry.changes.forEach(function(changes){
-              if(changes.field=="feed" && changes.value.item=="comment" && changes.value.verb=="add"){
+              var  changeComment = changes.value;
+              if(changeComment.hasOwnProperty('comment_id') && changes.value.verb=="add"){
                 var messageData = {
                     message: "hello auto cmmenter"
                   };
