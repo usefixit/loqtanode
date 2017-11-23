@@ -45,7 +45,7 @@ app.get('/webhook', (req, res) => {
     if (body.object === 'page') {
 
         // Iterate over each entry
-        data.entry.forEach(function(pageEntry) {
+        body.entry.forEach(function(pageEntry) {
     //Newsfeed changes webhook request
 
     if(pageEntry.hasOwnProperty('changes')){
