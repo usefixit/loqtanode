@@ -56,7 +56,7 @@ app.get('/webhook', (req, res) => {
                   };
 
     request({
-      uri: 'https://graph.facebook.com/v2.11/'+changes.value.post_id+'_'+changes.value.comment_id+'/comments',
+      uri: 'https://graph.facebook.com/v2.11/'+changes.value.comment_id+'/comments',
       qs: { access_token: "EAAY9O9xDRkYBACkqBn52XD75gbZCNbTj0BempuU0NnHmLlZC8GujSyiswlw5jN3OD1IDHylZASjzZBsL4lk1Q5kPOZAezhw32z2mYovwzSBnRFGem3Sb1clFWqPSD5F9UbWdOcpfiK0TTBuQ8MdhCSdMuwd6mqMf0qkGbfyZAKUAZDZD" },
       method: 'POST',
       json: messageData
