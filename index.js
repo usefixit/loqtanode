@@ -8,8 +8,6 @@ const
  fs = require('fs'),
   app = express().use(bodyParser.json()); // creates express http server
 
-// Sets server port and logs message on success
-app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 
   // Creates the endpoint for our webhook
   app.post('/webhook', (req, res) => {
@@ -24,20 +22,6 @@ request({
   qs: { access_token: "EAAY9O9xDRkYBACkqBn52XD75gbZCNbTj0BempuU0NnHmLlZC8GujSyiswlw5jN3OD1IDHylZASjzZBsL4lk1Q5kPOZAezhw32z2mYovwzSBnRFGem3Sb1clFWqPSD5F9UbWdOcpfiK0TTBuQ8MdhCSdMuwd6mqMf0qkGbfyZAKUAZDZD" },
   method: 'POST',
   json: messageData
-
-}, function (error, response, body) {
-  if (!error && response.statusCode == 200) {
-    console.log(body);
-  } else {
-    console.error("Failed calling Send API", response.statusCode, response.statusMessage, body.error);
-  }
-});
-
-request({
-  uri: 'https://graph.facebook.com/v2.11/650177341837555_719588478229774/private_replies',
-  qs: { access_token: "EAAY9O9xDRkYBACkqBn52XD75gbZCNbTj0BempuU0NnHmLlZC8GujSyiswlw5jN3OD1IDHylZASjzZBsL4lk1Q5kPOZAezhw32z2mYovwzSBnRFGem3Sb1clFWqPSD5F9UbWdOcpfiK0TTBuQ8MdhCSdMuwd6mqMf0qkGbfyZAKUAZDZD" },
-  method: 'POST',
-  json: {"meaasage":JSON.stringify(req)}
 
 }, function (error, response, body) {
   if (!error && response.statusCode == 200) {
@@ -83,14 +67,13 @@ request({
 
      });
 
-
       // Returns a '200 OK' response to all requests
-      res.status(200).send(JSON.stringify(req));
+      res.status(200).send('EVENT_RECEIVED');
     } else {
       // Returns a '404 Not Found' if event is not from a page subscription
       res.sendStatus(404);
     }
 */
-res.status(200).send(';;;');
+res.status(200).send('EVENT_RECEIVED');
 
   });
