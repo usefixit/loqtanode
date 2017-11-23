@@ -5,7 +5,13 @@ const
   express = require('express'),
   bodyParser = require('body-parser'),
   request = require('request'),
+  getUrls = require("get-urls"),
   app = express().use(bodyParser.json()); // creates express http server
+
+  //some global variable
+  let   content = '';
+  let firstLink = '';
+  let productSerach = '';
 
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
@@ -52,23 +58,40 @@ app.get('/webhook', (req, res) => {
             pageEntry.changes.forEach(function(changes){
               var  changeComment = changes.value;
               if(changeComment.hasOwnProperty('comment_id') && changes.value.verb=="add"){
-                var messageData = {
-                    message: "hello auto cmmenter"
-                  };
+                //get message info for post id
+                request({
+                  uri: 'https://graph.facebook.com/v2.11/'+changes.value.post_id,
+                  qs: { access_token: "EAAY9O9xDRkYBACkqBn52XD75gbZCNbTj0BempuU0NnHmLlZC8GujSyiswlw5jN3OD1IDHylZASjzZBsL4lk1Q5kPOZAezhw32z2mYovwzSBnRFGem3Sb1clFWqPSD5F9UbWdOcpfiK0TTBuQ8MdhCSdMuwd6mqMf0qkGbfyZAKUAZDZD" },
+                  method: 'GET'
+                }, function (error, response, body) {
+                  if (!error && response.statusCode == 200) {
+                     content = JSON.parse(body);
+                    var setValues = getUrls(content.message).values();
+                     firstLink = setValues.next().value;
+                   productSerach = firstLink.substr(firstLink.lastIndexOf('/') + 1);
 
-    request({
-      uri: 'https://graph.facebook.com/v2.11/'+changes.value.comment_id+'/comments',
-      qs: { access_token: "EAAY9O9xDRkYBACkqBn52XD75gbZCNbTj0BempuU0NnHmLlZC8GujSyiswlw5jN3OD1IDHylZASjzZBsL4lk1Q5kPOZAezhw32z2mYovwzSBnRFGem3Sb1clFWqPSD5F9UbWdOcpfiK0TTBuQ8MdhCSdMuwd6mqMf0qkGbfyZAKUAZDZD" },
-      method: 'POST',
-      json: messageData
+                   ////send auto comment
+                   var messageData = {
+                       message: "احنا متجر الكتروني بغزة وطلبك بيوصل لعندك ،السعر رح تلاقي بالرابط\n " + firstLink
+                     };
+                   request({
+                     uri: 'https://graph.facebook.com/v2.11/'+changes.value.comment_id+'/comments',
+                     qs: { access_token: "EAAY9O9xDRkYBACkqBn52XD75gbZCNbTj0BempuU0NnHmLlZC8GujSyiswlw5jN3OD1IDHylZASjzZBsL4lk1Q5kPOZAezhw32z2mYovwzSBnRFGem3Sb1clFWqPSD5F9UbWdOcpfiK0TTBuQ8MdhCSdMuwd6mqMf0qkGbfyZAKUAZDZD" },
+                     method: 'POST',
+                     json: messageData
 
-  }, function (error, response, body) {
-      if (!error && response.statusCode == 200) {
-        console.log(body);
-      } else {
-        console.error("Failed calling Send API", response.statusCode, response.statusMessage, body.error);
-      }
-    });
+                 }, function (error, response, body) {
+                     if (!error && response.statusCode == 200) {
+                       console.log(body);
+                     } else {
+                       console.error("Failed calling Send API", response.statusCode, response.statusMessage, body.error);
+                     }
+                   });
+                   ///////////////////////////
+                  } else {
+                    console.error("Failed calling Send API", response.statusCode, response.statusMessage, body.error);
+                  }
+                });
 
               }
             });
