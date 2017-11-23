@@ -82,4 +82,3 @@ app.get('/webhook', (req, res) => {
 res.status(200).send('EVENT_RECEIVED');
 
   });
-  app.listen();
