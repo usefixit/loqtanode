@@ -7,6 +7,7 @@ const
   request = require('request'),
   getUrls = require("get-urls"),
   striptags = require('striptags'),
+  sopifyLink = 'https://7b6015fe2c1b20468f01807de06fd4ed:8ee4c9e3a828d5c8e5461476b8b04b70@loqta-ps.myshopify.com/admin/products.json?handle=' ,
   app = express().use(bodyParser.json()); // creates express http server
 
   //some global variable
@@ -83,7 +84,7 @@ app.get('/webhook', (req, res) => {
 
 //////////////////send private messageData and get short description
                 request({
-                  uri: ''+productSerach,
+                  uri: sopifyLink+productSerach,
                   method: 'GET'
                 }, function (error, response, body) {
                   if (!error && response.statusCode == 200) {
