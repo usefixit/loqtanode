@@ -18,7 +18,7 @@ const
       smallDesc = '',
       smallDescriptionCloseTag = "[/smallDescription]";
   let predefinedArray = ['www.loqta.ps','http://loqta.ps','http://loqta.ps/collection'];
-  let saleLink = "https://loqta.ps/collections/sale";
+  let saleLink = 'https://loqta.ps/collections/sale';
 
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
@@ -112,7 +112,7 @@ app.get('/webhook', (req, res) => {
                   }
                 });
                 ///////////////////////////////
-              }else if (firstLink === saleLink) {
+              }else if (firstLink == saleLink) {
 
                 var messageData = {
                     message: "أهلا وسهلا فيكم بمتجر لقطة في غزة ،، لحقوا جمعة التخفيضات واطلبوا يلي بدكم اياه من الرابط \n"+"www.loqta.ps";
