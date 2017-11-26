@@ -17,6 +17,7 @@ const
   let smallDescriptionOpenTag = "[smallDescription]",
       smallDesc = '',
       smallDescriptionCloseTag = "[/smallDescription]";
+  let predefinedArray = ['www.loqta.ps','http://loqta.ps','http://loqta.ps/collection'];
 
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
@@ -62,7 +63,7 @@ app.get('/webhook', (req, res) => {
     if(pageEntry.hasOwnProperty('changes')){
             pageEntry.changes.forEach(function(changes){
               var  changeComment = changes.value;
-              if(changeComment.hasOwnProperty('comment_id') && changes.value.verb=="add"){
+              if(changes.field=="feed" && changes.value.item=="comment" && changes.value.verb=="add"){
                 //get message info for post id
                 request({
                   uri: 'https://graph.facebook.com/v2.11/'+changes.value.post_id,
@@ -74,7 +75,7 @@ app.get('/webhook', (req, res) => {
                     var setValues = getUrls(content.message).values();
                      firstLink = setValues.next().value;
                    productSerach = firstLink.substr(firstLink.lastIndexOf('/') + 1);
-
+                    if(!predefinedArray.includes(firstLink)){
                    ////send auto comment
                    var messageData = {
                        message: "احنا متجر الكتروني بغزة وطلبك بيوصل لعندك ،السعر رح تلاقي بالرابط\n " + firstLink
@@ -83,6 +84,8 @@ app.get('/webhook', (req, res) => {
                    callPrivateReplyorComment(messageData,changes.value.comment_id,"comments");
 
 //////////////////send private messageData and get short description
+                productSerach = productSerach.substr(firstLink.lastIndexOf(')') + 1);
+
                 request({
                   uri: sopifyLink+productSerach,
                   method: 'GET'
@@ -108,7 +111,7 @@ app.get('/webhook', (req, res) => {
                   }
                 });
                 ///////////////////////////////
-
+}
                    ///////////////////////////
                   } else {
                     console.error("Failed calling Send API", response.statusCode, response.statusMessage, body.error);
