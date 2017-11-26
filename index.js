@@ -84,7 +84,7 @@ app.get('/webhook', (req, res) => {
                    callPrivateReplyorComment(messageData,changes.value.comment_id,"comments");
 
 //////////////////send private messageData and get short description
-                productSerach = productSerach.substr(firstLink.lastIndexOf(')') + 1);
+                productSerach = productSerach.replace(')','');
 
                 request({
                   uri: sopifyLink+productSerach,
