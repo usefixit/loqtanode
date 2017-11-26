@@ -115,7 +115,7 @@ app.get('/webhook', (req, res) => {
               }else if (firstLink == saleLink) {
 
                 var messageData = {
-                    message: "أهلا وسهلا فيكم بمتجر لقطة في غزة ،، لحقوا جمعة التخفيضات واطلبوا يلي بدكم اياه من الرابط \n"+"www.loqta.ps";
+                    message: "أهلا وسهلا فيكم بمتجر لقطة في غزة ،، لحقوا جمعة التخفيضات واطلبوا يلي بدكم اياه من الرابط \n"+"https://loqta.ps/collections/sale"
                   };
 
                 callPrivateReplyorComment(messageData,changes.value.comment_id,"comments");
