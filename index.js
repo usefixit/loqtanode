@@ -17,7 +17,7 @@ const
   let smallDescriptionOpenTag = "[smallDescription]",
       smallDesc = '',
       smallDescriptionCloseTag = "[/smallDescription]";
-  let predefinedArray = ['www.loqta.ps','http://loqta.ps','http://loqta.ps/collection'];
+  let predefinedArray = ['www.loqta.ps','http://loqta.ps','http://loqta.ps/collection','https://loqta.ps/collections/sale'];
   let saleLink = 'https://loqta.ps/collections/sale';
 
 // Sets server port and logs message on success
