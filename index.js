@@ -101,7 +101,7 @@ app.get('/webhook', (req, res) => {
                         smallDesc = description.substring(smallDescStartIndex, smallDescEndIndex).replace(/(\[.+\])/gi, '').trim();
 
                         var messageData = {
-                        message: smallDesc + "\n"+"اطلبه الان من الرابط"+"\n"+firstLink
+                        message: "أهلا وسهلا فيك بمتجر لقطة ، هل تعاملت معنا قبل هيك؟"
                         };
                 //send private message
                 callPrivateReplyorComment(messageData,changes.value.comment_id,"private_replies");
