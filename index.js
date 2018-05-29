@@ -26,7 +26,7 @@ app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 app.get('/webhook', (req, res) => {
 
   // Your verify token. Should be a random string.
-  let VERIFY_TOKEN = "EAAB6BRIcobUBAKTHINdnouB2XbyZC6UKqR0FgmoeVjM9IM9jTgDqQZABRBf10OFxZBZBnKBZCsYTdXBKMj75CZCvZC95lMrlrv0qxv9wBddrmZAxl53ZAZCEfQlQEbrOc3fFKvKUFNZAb3UZCaSpUpo6LxB5PVrIP5DwJbrwGgSpwD1AUgZDZD"
+  let VERIFY_TOKEN = "EAAB6BRIcobUBABrZBPaZB5Qk2BmHf1yr0yEwKlnF5NSKyRMZAekpnglgpf3HWdKRmF6Jqk4CCyNpXdZBHa1wJOLdz5jcfb3cDfEy2o9eqjZCkf4KJGZCM0bEmzv8q4LfeZBjqsKZB7pyj7ZAFHYg0lb3IBItjljzao8VpL4tWclZC5kwZDZD"
 
   // Parse the query params
   let mode = req.query['hub.mode'];
@@ -68,7 +68,7 @@ app.get('/webhook', (req, res) => {
                 //get message info for post id
                 request({
                   uri: 'https://graph.facebook.com/v2.11/'+changes.value.post_id,
-                  qs: { access_token: "EAAB6BRIcobUBAKTHINdnouB2XbyZC6UKqR0FgmoeVjM9IM9jTgDqQZABRBf10OFxZBZBnKBZCsYTdXBKMj75CZCvZC95lMrlrv0qxv9wBddrmZAxl53ZAZCEfQlQEbrOc3fFKvKUFNZAb3UZCaSpUpo6LxB5PVrIP5DwJbrwGgSpwD1AUgZDZD" },
+                  qs: { access_token: "EAAB6BRIcobUBABrZBPaZB5Qk2BmHf1yr0yEwKlnF5NSKyRMZAekpnglgpf3HWdKRmF6Jqk4CCyNpXdZBHa1wJOLdz5jcfb3cDfEy2o9eqjZCkf4KJGZCM0bEmzv8q4LfeZBjqsKZB7pyj7ZAFHYg0lb3IBItjljzao8VpL4tWclZC5kwZDZD" },
                   method: 'GET'
                 }, function (error, response, body) {
                   if (!error && response.statusCode == 200) {
@@ -144,7 +144,7 @@ res.status(200).send('EVENT_RECEIVED');
   function callPrivateReplyorComment(messageData,comment_id,action) {
     request({
       uri: 'https://graph.facebook.com/v2.9/'+comment_id+'/'+action,
-      qs: { access_token: "EAAB6BRIcobUBAKTHINdnouB2XbyZC6UKqR0FgmoeVjM9IM9jTgDqQZABRBf10OFxZBZBnKBZCsYTdXBKMj75CZCvZC95lMrlrv0qxv9wBddrmZAxl53ZAZCEfQlQEbrOc3fFKvKUFNZAb3UZCaSpUpo6LxB5PVrIP5DwJbrwGgSpwD1AUgZDZD" },
+      qs: { access_token: "EAAB6BRIcobUBABrZBPaZB5Qk2BmHf1yr0yEwKlnF5NSKyRMZAekpnglgpf3HWdKRmF6Jqk4CCyNpXdZBHa1wJOLdz5jcfb3cDfEy2o9eqjZCkf4KJGZCM0bEmzv8q4LfeZBjqsKZB7pyj7ZAFHYg0lb3IBItjljzao8VpL4tWclZC5kwZDZD" },
       method: 'POST',
       json: messageData
 
